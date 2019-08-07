@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  port: 5432
+  username: postgres
+  password: password
+
+development:
+  <<: *default
+  database: taxviewer_dev
+
+test:
+  <<: *default
+  database: taxviewer__test
+
+production:
+  <<: *default
+  database: taxviewer__prod
+  username: taxviewer
+  password: <%= ENV['VITAL_ORANGE_DATABASE_PASSWORD'] %>
+
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
